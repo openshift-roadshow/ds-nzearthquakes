@@ -1,0 +1,24 @@
+#!/usr/bin/env python
+
+import csv
+import requests
+
+# https://wfs.geonet.org.nz
+
+url = 'https://wfs.geonet.org.nz/geonet/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=geonet:quake_search_v1&maxFeatures=50&outputFormat=json'
+
+data = requests.get(url).json()
+
+headers = ['Name', 'Latitude', 'Longitude', 'Details']
+
+with open('data.csv', 'wb') as fp:
+    writer = csv.writer(fp)
+    writer.writerow(headers)
+
+    for row in data['features']:
+        name = row['properties']['origintime']
+        latitude = row['geometry']['coordinates'][1]
+        longitude = row['geometry']['coordinates'][0]
+        details = row['properties']['magnitude']
+
+        writer.writerow([name, latitude, longitude, details])

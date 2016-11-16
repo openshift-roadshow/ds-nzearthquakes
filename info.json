@@ -1,0 +1,7 @@
+{
+    "id": "nzearthquakes",
+    "displayName": "NZ Earthquakes",
+    "type": "marker",
+    "center": {"latitude": "-41.2865", "longitude": "174.7762"},
+    "zoom": 5
+}
