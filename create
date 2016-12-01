@@ -11,7 +11,7 @@ data = requests.get(url).json()
 
 headers = ['Name', 'Latitude', 'Longitude', 'Details']
 
-with open('data.csv', 'wb') as fp:
+with open('data.csv', 'w', encoding='UTF-8') as fp:
     writer = csv.writer(fp)
     writer.writerow(headers)
 
